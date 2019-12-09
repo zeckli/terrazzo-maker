@@ -1,0 +1,66 @@
+* {
+  font-family: 'Varela Round', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  min-height: 100%;
+}
+
+body, #example {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#example {
+  flex-direction: column;
+  margin-top: -6rem;
+}
+
+#info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  width: 100%;
+  margin: 0rem auto 1.6rem;
+}
+
+h1, h5, a, button {
+  color: #4E578D;
+}
+
+h1 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin: 0rem auto 1.6rem;
+}
+
+h5 {
+  margin: 0rem 0.5rem;
+}
+
+a {
+  text-decoration: none;
+}
+
+button {
+  background: #F6F9FE;
+  border: 2px solid #C8DAF9;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-size: 0.9rem;
+  margin: 1.2rem 0.85rem 0rem 0rem;
+  padding: 0.8rem 1.8rem;
+  outline: none;
+}
+
+footer {
+  color: #83acf1;
+  font-size: 0.8rem;
+  margin: 2.5rem auto 0rem;
+}

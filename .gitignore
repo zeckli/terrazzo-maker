@@ -1,0 +1,22 @@
+# Logs
+logs
+*.log
+
+# Coverage directory used by tools like istanbul
+coverage
+
+# Compiled binary addons (https://nodejs.org/api/addons.html)
+build
+
+# Dependency directories
+node_modules/
+
+# parcel-bundler cache (https://parceljs.org/)
+.cache
+
+# Local System
+.DS_Store
+
+# Common
+build
+dist
