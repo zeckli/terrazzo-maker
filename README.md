@@ -23,6 +23,7 @@
 </p>
 
 ## Description
+`terrazzo-maker` is a dummy terrazzo pattern generator written in Typescript, and it utilizes [D3](https://github.com/d3/d3) to create SVG. Hope it helps. 🦊
 
 ## Install
 ```
