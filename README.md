@@ -6,7 +6,7 @@
     A dummy tool for generating terrazzo pattern
 </h4>
 
-<p align="center" style="border-radius: 16px;">
+<p align="center">
     <img alt="terrazzo-maker" src="media/terrazzo-maker.png" />
 </p>
 
