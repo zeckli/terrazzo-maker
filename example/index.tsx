@@ -34,11 +34,11 @@ export const ExampleApp = () => {
     const svgInstance = makeTerrazzoSVG({
       blob: { min: 3, max: 33 },
       colors: BLOB.COLORS,
-      density: density,
+      density,
       terrazzo: {
         backgroundColor: TERRAZZO.BACKGROUND_COLOR,
-        width: makeWidth(),
-        height: makeHeight()
+        height: makeHeight(),
+        width: makeWidth()
       }
     })
 
@@ -64,7 +64,7 @@ export const ExampleApp = () => {
         <button onClick={event => regenerate()}>Regenerate</button>
         <button onClick={event => downloadSVG()}>Dwonload SVG</button>
       </div>
-      <footer>Made with 🦞by Zeck Li in Taiwan</footer>
+      <footer>Made with ⚡️by Zeck Li in Taiwan</footer>
     </>
   )
 }

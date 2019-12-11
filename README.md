@@ -6,7 +6,7 @@
     A dummy tool for generating terrazzo pattern
 </h4>
 
-<p align="center">
+<p align="center" style="border-radius: 16px;">
     <img alt="terrazzo-maker" src="media/terrazzo-maker.png" />
 </p>
 
@@ -23,7 +23,7 @@
 </p>
 
 ## Description
-`terrazzo-maker` is a dummy terrazzo pattern generator written in Typescript, and it utilizes [D3](https://github.com/d3/d3) to create SVG. Hope it helps. 🦊
+`terrazzo-maker` is a dummy terrazzo pattern generator written in Typescript, and it's empowered by [D3](https://github.com/d3/d3). You can utilize it to creae a SVG element or convert it to a base64 string. Hope it helps. 🦊
 
 ## Install
 ```
