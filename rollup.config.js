@@ -18,7 +18,12 @@ export default [
       }
     ],
     plugins: [
-      commonjs({ include: 'node_modules/**'}),
+      commonjs({
+        include: 'node_modules/**',
+        namedExports: {
+          'node_modules/lodash/lodash.js': ['random']
+        }
+      }),
       resolve(),
       typescript({ clean: true })
     ]

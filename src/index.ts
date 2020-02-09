@@ -1,13 +1,14 @@
 import * as d3 from 'd3'
-import random from 'lodash.random'
+import { random } from 'lodash'
 
 import { TERRAZZO } from './enums'
+import { range } from './utils'
 
 /**
- * Make data for generating a blob.
+ * Make points for forming a blob.
  *
  */
-export const makeBlobPoints = ({ position, radius }: MakeBlobPointsParams): BlobPointPosition[] => {
+export const makePoints = ({ position, radius }: MakePointsParams): PointPosition[] => {
   const [x, y] = position
 
   // Point 1
@@ -35,48 +36,76 @@ export const makeBlobPoints = ({ position, radius }: MakeBlobPointsParams): Blob
 }
 
 /**
- * Make data of blobs.
+ * Make required data for forming a blob.
+ *
+ */
+export const makePointData = ({
+  min,
+  max,
+  width,
+  height
+}: MakePointDataParams): MakePointsParams => ({
+  position: [random(0, width), random(0, height)],
+  radius: random(min, max)
+})
+
+/**
+ * Make a blob.
+ *
+ */
+export const makeBlob = (params: MakePointDataParams): PointPosition[] =>
+  makePoints(makePointData(params))
+
+/**
+ * Make an array of blobs.
  *
  */
 export const makeBlobs = ({
   blob: { min, max },
   density,
-  terrazzo: { width, height }
-}: MakeBlobsParams) =>
-  Array.from(Array(density).keys()).map(index =>
-    makeBlobPoints({
-      position: [random(0, width), random(0, height)],
-      radius: random(min, max)
-    })
-  )
+  size: { width, height }
+}: MakeBlobsParams) => range(density).map(index => makeBlob({ min, max, width, height }))
 
 /**
- * Make the outline of a blob.
+ * Make the outline of a blob using D3.
  *
  */
 export const makeBlobOutline = d3
   .line()
-  .x(([x, y]: BlobPointPosition) => x)
-  .y(([x, y]: BlobPointPosition) => y)
+  .x(([x, y]: PointPosition) => x)
+  .y(([x, y]: PointPosition) => y)
   .curve(d3.curveBasisClosed)
 
 /**
  * Make svg of a terrazzo.
  *
  */
-export const makeTerrazzoSVG = ({
-  blob,
-  colors,
-  density,
-  terrazzo: { backgroundColor, width, height }
-}: MakeTerrazzoParams) => {
-  const blobs = makeBlobs({ blob, density, terrazzo: { width, height } })
+export const makeSVG = ({ blob, colors, density, terrazzo }: MakeSVGParams) => {
+  const { backgroundColor, width, height } = terrazzo
 
+  if (!backgroundColor || !width || !height) {
+    throw new Error('terrazzo setting is invalid')
+  }
+  if (!backgroundColor.startsWith('#')) {
+    throw new Error('background color is invalid. for example: #DDDDDD')
+  }
+  if (!blob || !blob.min || !blob.max) {
+    throw new Error('blob setting is invalid')
+  }
+  if (!density) {
+    throw new Error('density is invalid')
+  }
+
+  // make an array of blob data
+  const blobs = makeBlobs({ blob, density, size: { width, height } })
+
+  // make the svg container
   const svg = d3
     .create('svg')
     .attr('viewBox', `0 0 ${width} ${height}`)
     .attr('style', `background: ${backgroundColor}`)
 
+  // append blobs
   for (const item of blobs) {
     svg
       .append('path')
@@ -91,7 +120,7 @@ export const makeTerrazzoSVG = ({
  * Make the base64 string of a terrazzo svg.
  *
  */
-export const makeTerrazzoSVGBase64 = (svg: SVGElement) => {
+export const makeSVGBase64 = (svg: SVGElement) => {
   const serialized = new XMLSerializer().serializeToString(svg)
   return `data:image/svg+xml;base64,${btoa(serialized)}`
 }

@@ -23,7 +23,7 @@
 </p>
 
 ## Description
-`terrazzo-maker` is a dummy terrazzo pattern generator written in Typescript, and it's empowered by [D3](https://github.com/d3/d3). You can utilize it to creae a SVG element and convert it to a base64 string as a background image. Hope it helps. 🦊
+`terrazzo-maker` is a dummy terrazzo pattern generator written in Typescript, and it's empowered by [D3](https://github.com/d3/d3). You can utilize it to creae a SVG element and embed it to your page. Or, just generate it in base64 string and use it as source of background image. Hope it helps. 🦊
 
 ## Install
 ```

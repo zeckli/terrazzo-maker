@@ -1,30 +1,33 @@
-type BlobPointPosition = [number, number]
-
-interface MakeBlobPointsParams {
-  position: BlobPointPosition
-  radius: number
-}
-
-interface MakeBlobsParams {
-  blob: BlobRadiusRange
-  density: number
-  terrazzo: { width: number; height: number }
-}
-
 interface BlobRadiusRange {
   min: number
   max: number
 }
 
-interface MakeTerrazzoParams {
+interface MakePointsParams {
+  position: PointPosition
+  radius: number
+}
+
+type MakePointDataParams = BlobRadiusRange & SVGSize
+
+interface MakeBlobsParams {
+  blob: BlobRadiusRange
+  density: number
+  size: SVGSize
+}
+
+interface MakeSVGParams {
   blob: BlobRadiusRange
   colors: string[]
   density: number
-  terrazzo: TerrazzoSettings
+  terrazzo: SVGSettings
 }
 
-interface TerrazzoSettings {
-  backgroundColor: string
+type PointPosition = [number, number]
+
+type SVGSettings = { backgroundColor: string } & SVGSize
+
+interface SVGSize {
   width: number
   height: number
 }
