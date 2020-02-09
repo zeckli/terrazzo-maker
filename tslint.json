@@ -4,6 +4,7 @@
     "ban-comma-operator": true,
     "interface-name": [false, "never-prefix"],
     "no-debugger": true,
+    "no-submodule-imports": false,
     "radix": true
   }
 }

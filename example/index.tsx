@@ -1,18 +1,30 @@
-import random from 'lodash.random'
+import { random } from 'lodash'
 import * as React from 'react'
 import { render } from 'react-dom'
 
-import { makeTerrazzoSVG, makeTerrazzoSVGBase64 } from '../src'
+import { makeSVG, makeSVGBase64 } from '../src'
 import { BLOB, TERRAZZO } from '../src/enums'
 
-export const ExampleApp = () => {
+const DENSITY_MIN = 250
+
+const DENSITY_MAX = 360
+
+const RADIUS_MIN = 3
+
+const RADIUS_MAX = 33
+
+const makeDensity = () => random(DENSITY_MIN, DENSITY_MAX)
+
+/**
+ * Example app.
+ *
+ */
+const App = () => {
   const makeWidth = () =>
     window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth
 
   const makeHeight = () =>
     window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight
-
-  const makeDensity = () => random(250, TERRAZZO.DENSITY)
 
   const [density, setDensity] = React.useState<number>(makeDensity())
 
@@ -20,29 +32,29 @@ export const ExampleApp = () => {
 
   const regenerate = () => setDensity(makeDensity())
 
-  const downloadSVG = () => {
+  const download = () => {
     if (!svg) {
       return false
     }
     const link = document.createElement('a')
-    link.href = makeTerrazzoSVGBase64(svg)
+    link.href = makeSVGBase64(svg)
     link.download = 'terrazzo.svg'
     link.click()
   }
 
   React.useEffect(() => {
-    const svgInstance = makeTerrazzoSVG({
-      blob: { min: 3, max: 33 },
+    const svgInstance = makeSVG({
+      blob: { min: RADIUS_MIN, max: RADIUS_MAX },
       colors: BLOB.COLORS,
-      density: density,
+      density,
       terrazzo: {
         backgroundColor: TERRAZZO.BACKGROUND_COLOR,
-        width: makeWidth(),
-        height: makeHeight()
+        height: makeHeight(),
+        width: makeWidth()
       }
     })
 
-    const base64 = makeTerrazzoSVGBase64(svgInstance.node())
+    const base64 = makeSVGBase64(svgInstance.node())
 
     document.getElementById('body').style.background = `url(${base64})`
 
@@ -62,11 +74,11 @@ export const ExampleApp = () => {
       </div>
       <div>
         <button onClick={event => regenerate()}>Regenerate</button>
-        <button onClick={event => downloadSVG()}>Dwonload SVG</button>
+        <button onClick={event => download()}>Dwonload SVG</button>
       </div>
-      <footer>Made with 🦞by Zeck Li in Taiwan</footer>
+      <footer>Made with ⚡️by Zeck Li in Taiwan</footer>
     </>
   )
 }
 
-render(<ExampleApp />, document.getElementById('example'))
+render(<App />, document.getElementById('example'))
