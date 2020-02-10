@@ -1,5 +1,5 @@
 import * as d3 from 'd3'
-import { random } from 'lodash'
+import random from 'lodash.random'
 
 import { TERRAZZO } from './enums'
 import { range } from './utils'

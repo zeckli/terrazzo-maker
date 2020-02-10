@@ -1,6 +1,6 @@
 {
   "name": "terrazzo-maker",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A dummy tool for generating terrazzo pattern.",
   "homepage": "https://github.com/zeckli/terrazzo-maker",
   "author": {
@@ -26,12 +26,11 @@
   },
   "dependencies": {
     "d3": "^5.14.2",
-    "lodash": "^4.17.15"
+    "lodash.random": "^3.2.0"
   },
   "devDependencies": {
     "@types/d3": "^5.7.2",
     "@types/jest": "^24.0.23",
-    "@types/lodash": "^4.14.149",
     "@types/react": "^16.9.13",
     "@types/react-dom": "^16.9.4",
     "codecov": "^3.6.5",

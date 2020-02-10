@@ -1,4 +1,4 @@
-import { random } from 'lodash'
+import random from 'lodash.random'
 
 import { BLOB, TERRAZZO } from '../enums'
 import { makeBlobs, makePoints, makeSVG } from '../index'
