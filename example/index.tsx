@@ -1,4 +1,4 @@
-import { random } from 'lodash'
+import random from 'lodash.random'
 import * as React from 'react'
 import { render } from 'react-dom'
 
