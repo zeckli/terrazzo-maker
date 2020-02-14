@@ -37,3 +37,31 @@ Default web server port is `9000`, and you can change it in `package.json`.
 npm run example
 ```
 Then, check it by viewing `http://localhost:9000`.
+
+## Usage
+To make a terrazzo SVG:
+
+```
+import { makeSVG, makeSVGBase64 } from 'terrazzo-maker'
+
+// crate a svg instance
+const svg = makeSVG({
+  blob: { min: 5, max: 20 },
+  colors: [
+    'rgba(239, 225, 240)',
+    'rgba(204, 234, 240)',
+    'rgba(247, 198, 203)',
+    ...
+  ],
+  density: 300,
+  terrazzo: {
+    backgroundColor: '#fff',
+    height: 500,
+    width: 500
+  }
+})
+
+// convert a svg into base64 string
+const base64 = makeSVGBase64(svg.node())
+
+```
