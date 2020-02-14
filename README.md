@@ -20,6 +20,9 @@
     <a href="https://github.com/prettier/prettier">
         <img alt="Code Style" src="https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square" />
     </a>
+    <a href="https://bundlephobia.com/result?p=terrazzo-maker">
+        <img alt="Code Style" src="https://badgen.net/bundlephobia/min/terrazzo-maker" />
+    </a>
 </p>
 
 ## Description
@@ -44,24 +47,24 @@ To make a terrazzo SVG:
 ```
 import { makeSVG, makeSVGBase64 } from 'terrazzo-maker'
 
-// crate a svg instance
 const svg = makeSVG({
   blob: { min: 5, max: 20 },
   colors: [
-    'rgba(239, 225, 240)',
-    'rgba(204, 234, 240)',
-    'rgba(247, 198, 203)',
+    '#EFE1F0',
+    '#CCEAF0',
     ...
   ],
   density: 300,
   terrazzo: {
-    backgroundColor: '#fff',
+    backgroundColor: '#FFFFFF',
     height: 500,
     width: 500
   }
 })
+```
 
-// convert a svg into base64 string
+To convert a SVG into base64 string:
+
+```
 const base64 = makeSVGBase64(svg.node())
-
 ```
