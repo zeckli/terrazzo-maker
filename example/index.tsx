@@ -70,7 +70,7 @@ const App = () => {
             Github Repo
           </a>
         </h5>
-        ·<h5>Version 0.1.2</h5>
+        ·<h5>Version 0.1.3</h5>
       </div>
       <div>
         <button onClick={event => regenerate()}>Regenerate</button>
