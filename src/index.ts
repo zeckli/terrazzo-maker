@@ -1,5 +1,5 @@
-import * as d3Selection from 'd3-selection'
-import * as d3Shape from 'd3-shape'
+import { create } from 'd3-selection'
+import { curveBasisClosed, line } from 'd3-shape'
 import random from 'lodash.random'
 
 import { TERRAZZO } from './enums'
@@ -71,11 +71,10 @@ export const makeBlobs = ({
  * Make the outline of a blob using D3.
  *
  */
-export const makeBlobOutline = d3Shape
-  .line()
+export const makeBlobOutline = line()
   .x(([x, y]: PointPosition) => x)
   .y(([x, y]: PointPosition) => y)
-  .curve(d3Shape.curveBasisClosed)
+  .curve(curveBasisClosed)
 
 /**
  * Make svg of a terrazzo.
@@ -101,8 +100,7 @@ export const makeSVG = ({ blob, colors, density, terrazzo }: MakeSVGParams) => {
   const blobs = makeBlobs({ blob, density, size: { width, height } })
 
   // make the svg container
-  const svg = d3Selection
-    .create('svg')
+  const svg = create('svg')
     .attr('viewBox', `0 0 ${width} ${height}`)
     .attr('style', `background: ${backgroundColor}`)
 
